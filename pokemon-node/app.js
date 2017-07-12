@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 
 var pokemon = require('./routes/pokemon');
 var ratings = require('./routes/rating');
+var users = require('./routes/users');
 
 var app = express();
 
@@ -24,6 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/pokemon', pokemon);
 app.use('/ratings', ratings);
+app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
