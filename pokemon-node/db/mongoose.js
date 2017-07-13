@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 
+
 //mongoose.connect('mongodb://ayan_das:sik26gudu@ds153392.mlab.com:53392/heroku_f92tgxkj');
 mongoose.connect('mongodb://localhost/pokemon')
 
