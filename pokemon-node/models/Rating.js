@@ -1,7 +1,7 @@
 var mongoose = require('../db/mongoose');
 
 var ratingSchema = mongoose.Schema({
-    userId: { type: String, required: true },
+    userId: { type: Number, required: true },
     pokemonId: { type: Number, required: true },
     rating: { type: Number, required: true }
 })
