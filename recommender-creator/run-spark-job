@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+# This script is used to run all of the examples. Mostly to be used by travis for testing
+# Output the commands we run
+#set -x
+# If any command fails, fail
+set -e
+# Build everything
+#KAFKA_ROOT=./kafka_2.9.2-0.8.1.1
+SPARK_SUBMIT_SCRIPT=$SPARK_HOME/bin/spark-submit
+ASSEMBLY_JAR=./target/uber-sparkexamples-0.0.1-SNAPSHOT.jar
+
+if [ -n "$1" ]; then
+  EXAMPLE_CLASS="$1"
+  shift
+else
+  echo "Usage: ./run_spark_job <example-class> [example-args]" 1>&2
+  echo "  - set MASTER=XX to use a specific master" 1>&2
+  exit 1
+fi
+
+EXAMPLE_MASTER=${MASTER:-"local[*]"}
+
+if [[ ! $EXAMPLE_CLASS == com.ayandas.recommender.creation* ]]; then
+  EXAMPLE_CLASS="com.ayandas.recommender.creation.$EXAMPLE_CLASS"
+fi
+
+
+echo "Master is: $EXAMPLE_MASTER"
+echo "Class for Spark Job: $EXAMPLE_CLASS"
+echo "Assembly Jar is: $ASSEMBLY_JAR"
+echo
+echo "Invoking $SPARK_SUBMIT_SCRIPT"
+echo
+
+exec "$SPARK_SUBMIT_SCRIPT" --master $EXAMPLE_MASTER --class $EXAMPLE_CLASS "$ASSEMBLY_JAR" "$@"
+
+echo
+echo "Done"
+echo
