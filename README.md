@@ -1,5 +1,8 @@
 # Pokémon REST/Spark based Application
 
+### Source of data that is stored in the database for this operation:
+https://www.kaggle.com/mylesoneill/pokemon-sun-and-moon-gen-7-stats
+
 This application is intended to provide users with information about various Pokémon and their stats and types. You can search by their type, and also gain information about all forms they might take, such as Mega Evolutions and alternate forms coming from abilities or objects held and administered. Additional functionality to incorporate user signup and interaction is in progress. Below are the details of each separate component.
 
 ## pokemon-node
