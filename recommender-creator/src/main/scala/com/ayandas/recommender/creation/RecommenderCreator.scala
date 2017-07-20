@@ -6,6 +6,14 @@ import org.apache.spark.sql.SparkSession
 import org.apache.spark.ml.evaluation.RegressionEvaluator
 import org.apache.spark.ml.recommendation.ALS
 import org.apache.spark.ml.recommendation.ALSModel
+//import org.mongodb.scala._
+import scala.collection.JavaConversions._
+import org.apache.spark.sql.Row
+import org.apache.spark.sql.functions._
+import com.mongodb.spark._
+import org.bson._
+import org.apache.spark.sql.types.DoubleType
+
 
 case class Rating(userId: Int, pokemonId: Int, rating: Float)
 
@@ -14,7 +22,13 @@ object RecommenderCreator {
         //println("Hello World")
 
 
-        val spark = SparkSession.builder().getOrCreate()
+        val spark = SparkSession.builder()
+            .master("local")
+            .appName("MongoSparkConnectorIntro")
+            .config("spark.mongodb.input.uri", "mongodb://127.0.0.1/pokemon")
+            .config("spark.mongodb.output.uri", "mongodb://127.0.0.1/pokemon")
+            .getOrCreate()
+
         import spark.implicits._
 
         val data = spark.read.textFile("src/main/resources/ratings.txt")
@@ -50,20 +64,23 @@ object RecommenderCreator {
             .setItemCol("pokemonId")
             .setRatingCol("rating")
         val model = als.fit(training)
-
-        //model.setColdStartStrategy("drop")
-        val predictions = model.transform(test)
-
-        val evaluator = new RegressionEvaluator()
-            .setMetricName("rmse")
-            .setLabelCol("rating")
-            .setPredictionCol("prediction")
-
-        val error: Double = evaluator.evaluate(predictions)
-        println(s"Root-mean-square error = $error")
-        val writer = new PrintWriter(new File("error.txt"))
-        writer.write(s"Root-mean-square error = $error")
-        writer.close()
         model.save("bestModel")
+        //val mongoClient: MongoClient = MongoClient()
+        //val database: MongoDatabase = mongoClient.getDatabase("pokemon")
+        //val recommendationCollection: MongoCollection[Document] = database.getCollection("recommendations")
+
+        val recommendations = model.recommendForAllUsers(50)
+        val transformedReccos = recommendations.select($"userId", explode($"recommendations")).select($"userId", $"col.pokemonId", $"col.rating")
+
+        val stage1 = transformedReccos.select($"userId", $"pokemonId", transformedReccos("rating").cast(DoubleType))
+        MongoSpark.save(stage1.write.option("collection", "reccomendations").mode("overwrite"))
+        /*transformedReccos.foreach(row => {
+            val userId = row.getInt(0)
+            val pokemonId = row.getInt(1)
+            val rating = if (row.getFloat(2) > 5) 5.0 else row.getFloat(2)
+            //println("Rating: " + rating)
+            val doc: Document = Document("userId" -> userId, "pokemonId" -> pokemonId, "rating" -> rating)
+            recommendationCollection.insertOne(doc)
+        })*/
     }
 }

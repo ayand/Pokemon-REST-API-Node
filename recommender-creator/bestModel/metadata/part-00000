@@ -1,1 +1,1 @@
-{"class":"org.apache.spark.ml.recommendation.ALSModel","timestamp":1500181107750,"sparkVersion":"2.1.0","uid":"als_0933fa435366","paramMap":{"itemCol":"pokemonId","predictionCol":"prediction","userCol":"userId"},"rank":10}
+{"class":"org.apache.spark.ml.recommendation.ALSModel","timestamp":1500523348213,"sparkVersion":"2.2.0","uid":"als_bdcb19a27280","paramMap":{"coldStartStrategy":"nan","userCol":"userId","itemCol":"pokemonId","predictionCol":"prediction"},"rank":10}

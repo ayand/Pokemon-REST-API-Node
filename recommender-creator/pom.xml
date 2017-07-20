@@ -146,6 +146,11 @@
 			<artifactId>json4s-native_${scala.tools.version}</artifactId>
 			<version>3.3.0</version>
 		</dependency>
+		<dependency>
+    		<groupId>org.mongodb.spark</groupId>
+    		<artifactId>mongo-spark-connector_2.10</artifactId>
+    		<version>2.2.0</version>
+		</dependency>
 
 	</dependencies>
 
