@@ -13,6 +13,7 @@ This is an Express.js application written in Node.js which interacts with a Mong
 * Finding all Pokémon that have a particular type or type combination
 * Registering users
 * Allowing a user to post ratings for multiple Pokémon
+* Returning the top 50 recommended Pokémon for a user along with the suggested ratings the user might give them.
 
 ## rating-dump
 This is a Maven Java application which uses two source files to read all user ratings of Pokémon from the database and put them in a text file
@@ -20,4 +21,6 @@ This is a Maven Java application which uses two source files to read all user ra
 * FileCreation.java pulls all of the documents from "ratings" collection of the MongoDB database used in our Node app and puts the data in a text file.
 
 ## recommender-creator
-This is an Apache Spark job which reads the text file generated from the rating-dump project and uses it to generate a recommendation model that uses the alternating least squares algorithm to recommend Pokémon that users may like. I intend to use the model saved by this job to make Pokémon predictions for users, store them through technologies like MongoDB or Apache Kafka, and then use the Node API to get back recommendations for a particular user.
+This contains Apache Spark jobs which read the text file generated from the rating-dump project and use it to generate a recommendation model that uses the alternating least squares algorithm to recommend Pokémon that users may like. The top 50 recommendations for each user are then stored in the MongoDB database. Each of the files in this project tackle the recommender creation process differently.
+* RecommenderCreator.scala trains an ALS model by using a matrix factorization rank of 10, a regularization parameter of 0.1, and a maximum of 15 iterations.
+* BestRecommender.scala experiments with a range of different parameter options for matrix factorization rank, regularization parameter, and maximum number of iterations
