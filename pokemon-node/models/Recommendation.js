@@ -6,5 +6,5 @@ var recommendationSchema = mongoose.Schema({
   rating: { type: Number }
 });
 
-var RecommendationModel = mongoose.model('reccomendation', recommendationSchema);
+var RecommendationModel = mongoose.model('recommendation', recommendationSchema);
 module.exports = RecommendationModel;
