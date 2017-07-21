@@ -73,7 +73,7 @@ object RecommenderCreator {
         val transformedReccos = recommendations.select($"userId", explode($"recommendations")).select($"userId", $"col.pokemonId", $"col.rating")
 
         val stage1 = transformedReccos.select($"userId", $"pokemonId", transformedReccos("rating").cast(DoubleType))
-        MongoSpark.save(stage1.write.option("collection", "reccomendations").mode("overwrite"))
+        MongoSpark.save(stage1.write.option("collection", "recommendations").mode("overwrite"))
         /*transformedReccos.foreach(row => {
             val userId = row.getInt(0)
             val pokemonId = row.getInt(1)
