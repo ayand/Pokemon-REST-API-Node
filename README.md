@@ -24,3 +24,12 @@ This is a Maven Java application which uses two source files to read all user ra
 This contains Apache Spark jobs which read the text file generated from the rating-dump project and use it to generate a recommendation model that uses the alternating least squares algorithm to recommend Pokémon that users may like. The top 50 recommendations for each user are then stored in the MongoDB database. Each of the files in this project tackle the recommender creation process differently.
 * RecommenderCreator.scala trains an ALS model by using a matrix factorization rank of 10, a regularization parameter of 0.1, and a maximum of 15 iterations.
 * BestRecommender.scala experiments with a range of different parameter options for matrix factorization rank, regularization parameter, and maximum number of iterations
+
+## pokemon-app-frontend
+This directory contains the front-end of my Pokémon application, written in Angular in TypeScript. This front-end will be capable of displaying information about Pokémon, allowing users to rate Pokémon, recommending Pokémon, and also allowing users to share customized Pokémon teams with others in order to get their opinion.
+
+This application contains images from various sources. They are as follows:
+* Carousel images
+    * https://gameperiod.com/wp-content/uploads/2017/04/2016-03-08-08-24-17-ash_and_pokemon_all_by_pklucario-d34lncz.png
+    * http://cdn2.alphr.com/sites/alphr/files/2016/07/how_to_get_pikachu_starter_pokemon.jpg
+    * http://emertainmentmonthly.com/wp-content/uploads/sites/45/2016/11/pokemon4.jpg
