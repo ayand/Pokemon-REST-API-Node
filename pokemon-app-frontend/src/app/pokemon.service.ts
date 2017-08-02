@@ -1,4 +1,7 @@
-import { EventEmitter } from '@angular/core';
+import { EventEmitter, Injectable, OnInit } from '@angular/core';
+import { Headers, Http, Response } from '@angular/http';
+import 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 
 interface Pokemon {
         id: number;
@@ -20,15 +23,24 @@ interface Pokemon {
         eggGroup2: string;
 }
 
-export class PokemonService {
+@Injectable()
+export class PokemonService implements OnInit {
     private pokemon: Pokemon[] = [];
     pokemonEmitter = new EventEmitter<Pokemon[]>();
     singlePokemonEmitter = new EventEmitter<Pokemon>();
+
+    constructor(private http: Http) {}
 
     setAllPokemon(allPokemon: Pokemon[]) {
         this.pokemon = allPokemon;
         this.pokemonEmitter.emit(allPokemon);
     }
+
+    ngOnInit() {
+
+    }
+
+
 
     showPokemonOfOneType(type: string) {
         const relevantPokemon = this.pokemon.filter((p) => {
@@ -64,6 +76,20 @@ export class PokemonService {
 
     emitPokemon(pokemon: Pokemon) {
         this.singlePokemonEmitter.emit(pokemon);
+    }
+
+    getAllPokemon() {
+      return this.http.get('http://localhost:3000/pokemon')
+        .map(
+            (response: Response) => {
+                const data = response.json() as Pokemon[];
+                  this.pokemon = data;
+                  return this.pokemon;
+            }
+        )
+        .catch((error: Response) => {
+            return Observable.throw('Something went wrong');
+        })
     }
 
 }

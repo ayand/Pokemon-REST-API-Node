@@ -38,11 +38,13 @@
       </ul>
     </div>
   </div>
-  <div *ngIf="!pokemonSelected" class="col-md-8">
+  <!--<div *ngIf="!pokemonSelected" class="col-md-8">
       <app-select-prompt></app-select-prompt>
   </div>
   <div *ngIf="pokemonSelected" class="col-md-8">
       <app-pokemon-view></app-pokemon-view>
-      <!--<p>{{selectedPokemon.forme}}</p>-->
+  </div>-->
+  <div class="col-md-8">
+    <router-outlet></router-outlet>
   </div>
 </div>

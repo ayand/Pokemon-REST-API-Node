@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs/Subscription';
 import { PokemonService } from '../pokemon.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Response } from '@angular/http';
 
 interface Pokemon {
         id: number;
@@ -49,16 +51,17 @@ export class BrowsePokemonComponent implements OnInit, OnDestroy {
   pokemonSelected: boolean;
   selectedPokemon = null;
 
-  constructor(private http: HttpClient, private pokemonService: PokemonService) { }
+  constructor(private pokemonService: PokemonService,
+      private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
       this.firstList.sort((a, b) => a > b ? 1 : -1)
       this.secondList.sort((a, b) => a > b ? 1 : -1)
-      this.httpSubscription = this.http.get<Pokemon[]>('http://localhost:3000/pokemon').subscribe(data => {
-          this.visiblePokemon = data;
-          console.log(this.visiblePokemon);
-          this.pokemonService.setAllPokemon(data);
-      })
+
+      this.pokemonService.getAllPokemon().subscribe(
+          (pokemon: Pokemon[]) => this.visiblePokemon = pokemon,
+          (error) => console.log(error)
+      )
       this.pokemonSubscription = this.pokemonService.pokemonEmitter.subscribe((data: Pokemon[]) => {
           this.visiblePokemon = data;
       })
@@ -66,7 +69,7 @@ export class BrowsePokemonComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-      this.httpSubscription.unsubscribe();
+      //this.httpSubscription.unsubscribe();
       this.pokemonSubscription.unsubscribe();
   }
 
@@ -93,6 +96,8 @@ export class BrowsePokemonComponent implements OnInit, OnDestroy {
       this.type2 = null;
       this.pokemonSelected = false;
       this.selectedPokemon = null;
+      this.router.navigate(['/browse'], { relativeTo: this.route })
+      console.log('navigated');
   }
 
   selectType2(type: string) {
@@ -105,6 +110,8 @@ export class BrowsePokemonComponent implements OnInit, OnDestroy {
       }
       this.pokemonSelected = false;
       this.selectedPokemon = null;
+      this.router.navigate(['/browse'], { relativeTo: this.route })
+      console.log('navigated');
   }
 
   choosePokemon(pokemon: Pokemon) {
@@ -112,5 +119,6 @@ export class BrowsePokemonComponent implements OnInit, OnDestroy {
       this.pokemonService.singlePokemonEmitter.emit(pokemon);
       this.pokemonSelected = true;
       this.selectedPokemon = pokemon;
+      this.router.navigate(['/browse', pokemon.id], { relativeTo: this.route })
   }
 }

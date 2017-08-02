@@ -3,6 +3,7 @@
     <app-pokemon-profile [pokemon]="currentPokemon"></app-pokemon-profile>
   </div>
   <div class="col-md-6 pokemon-list">
+    <p align="center">Alternate formes</p>
     <ul>
       <a style="cursor: pointer" class="list-group-item" *ngFor="let aPokemon of pokemonFormes"
         (click)="selectPokemon(aPokemon)"

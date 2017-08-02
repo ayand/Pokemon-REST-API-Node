@@ -8,7 +8,10 @@ import { PokemonViewComponent } from './browse-pokemon/pokemon-view/pokemon-view
 
 const appRoutes: Routes = [
     { path: '', component: HomepageComponent },
-    { path: 'browse', component: BrowsePokemonComponent },
+    { path: 'browse', component: BrowsePokemonComponent, children: [
+        { path: '', component: SelectPromptComponent },
+        { path: ':id', component: PokemonViewComponent }
+    ] },
     { path: '**', redirectTo: '' }
 ]
 
