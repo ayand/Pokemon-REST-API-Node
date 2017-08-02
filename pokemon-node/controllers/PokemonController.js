@@ -5,6 +5,9 @@ module.exports.findAllPokemon = function(req, res, next) {
         if (err) {
             return res.status(400).send({ 'error': 'Could not retrieve the Pokémon' })
         } else {
+            pokemon.sort(function(a, b) {
+                return a.ndex - b.ndex;
+            })
             return res.status(200).send(pokemon);
         }
     })
@@ -31,6 +34,9 @@ module.exports.findPokemonFormes = function(req, res, next) {
             if (!pokemon) {
                 return res.status(404).send({ 'error': 'Could not find Pokémon formes with this Pokédex number' })
             }
+            pokemon.sort(function(a, b) {
+                return a.ndex - b.ndex;
+            })
             return res.status(200).send(pokemon);
         }
     });
@@ -44,6 +50,9 @@ module.exports.findPokemonByType = function(req, res, next) {
           if (!pokemon) {
               return res.status(404).send({ 'error': 'Could not find Pokémon with this type' })
           }
+          pokemon.sort(function(a, b) {
+              return a.ndex - b.ndex;
+          })
           return res.status(200).send(pokemon);
         }
     })
@@ -58,6 +67,9 @@ module.exports.findPokemonByTwoTypes = function(req, res, next) {
           if (!pokemon) {
               return res.status(404).send({ 'error': 'Could not find Pokémon with this type combination' })
           }
+          pokemon.sort(function(a, b) {
+              return a.ndex - b.ndex;
+          })
           return res.status(200).send(pokemon);
         }
       })

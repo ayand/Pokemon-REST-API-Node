@@ -1,11 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Subscription } from 'rxjs/Subscription';
+import { PokemonService } from '../pokemon.service';
+
+interface Pokemon {
+        id: number;
+        ndex: number;
+        forme: string;
+        species: string;
+        type1: string;
+        type2: string;
+        ability1: string;
+        ability2: string;
+        abilityH: string;
+        hp: number;
+        attack: number;
+        defense: number;
+        spattack: number;
+        spdefense: number;
+        speed: number;
+        eggGroup1: string;
+        eggGroup2: string;
+}
 
 @Component({
   selector: 'app-browse-pokemon',
   templateUrl: './browse-pokemon.component.html',
   styleUrls: ['./browse-pokemon.component.css']
 })
-export class BrowsePokemonComponent implements OnInit {
+export class BrowsePokemonComponent implements OnInit, OnDestroy {
 
   firstList: string[] = ['Normal', 'Fire', 'Fighting', 'Water', 'Flying', 'Grass',
       'Poison', 'Electric', 'Ground', 'Psychic', 'Rock', 'Ice', 'Bug', 'Dragon',
@@ -18,11 +41,33 @@ export class BrowsePokemonComponent implements OnInit {
   type1: string = null;
   type2: string = null;
 
-  constructor() { }
+  httpSubscription: Subscription;
+  pokemonSubscription: Subscription;
+
+  visiblePokemon: Pokemon[] = []
+
+  pokemonSelected: boolean;
+  selectedPokemon = null;
+
+  constructor(private http: HttpClient, private pokemonService: PokemonService) { }
 
   ngOnInit() {
       this.firstList.sort((a, b) => a > b ? 1 : -1)
       this.secondList.sort((a, b) => a > b ? 1 : -1)
+      this.httpSubscription = this.http.get<Pokemon[]>('http://localhost:3000/pokemon').subscribe(data => {
+          this.visiblePokemon = data;
+          console.log(this.visiblePokemon);
+          this.pokemonService.setAllPokemon(data);
+      })
+      this.pokemonSubscription = this.pokemonService.pokemonEmitter.subscribe((data: Pokemon[]) => {
+          this.visiblePokemon = data;
+      })
+      this.pokemonSelected = false;
+  }
+
+  ngOnDestroy() {
+      this.httpSubscription.unsubscribe();
+      this.pokemonSubscription.unsubscribe();
   }
 
   selectType1(type: string) {
@@ -30,6 +75,7 @@ export class BrowsePokemonComponent implements OnInit {
           this.type1 = null;
           this.secondList.push(type);
           this.secondList.sort((a, b) => a > b ? 1 : -1);
+          this.pokemonService.showAllPokemon();
       } else {
           const color = this.type1;
           this.type1 = type;
@@ -42,15 +88,29 @@ export class BrowsePokemonComponent implements OnInit {
               this.secondList.push(color);
               this.secondList.sort((a, b) => a > b ? 1 : -1);
           }
+          this.pokemonService.showPokemonOfOneType(type);
       }
       this.type2 = null;
+      this.pokemonSelected = false;
+      this.selectedPokemon = null;
   }
 
   selectType2(type: string) {
       if (this.type2 == type) {
           this.type2 = null;
+          this.pokemonService.showPokemonOfOneType(this.type1);
       } else {
           this.type2 = type;
+          this.pokemonService.showPokemonOfTwoTypes(this.type1, this.type2);
       }
+      this.pokemonSelected = false;
+      this.selectedPokemon = null;
+  }
+
+  choosePokemon(pokemon: Pokemon) {
+      console.log(pokemon);
+      this.pokemonService.singlePokemonEmitter.emit(pokemon);
+      this.pokemonSelected = true;
+      this.selectedPokemon = pokemon;
   }
 }

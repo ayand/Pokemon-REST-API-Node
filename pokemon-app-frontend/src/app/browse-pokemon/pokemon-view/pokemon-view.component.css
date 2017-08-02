@@ -1,0 +1,13 @@
+.list-group-item {
+    color: white;
+}
+
+.pokemon {
+    background-color: #4f4f4f;
+    color: white;
+}
+
+.pokemon-list {
+    height:300px;
+    overflow: scroll
+}

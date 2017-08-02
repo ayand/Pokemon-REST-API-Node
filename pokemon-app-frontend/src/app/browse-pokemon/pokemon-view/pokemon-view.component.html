@@ -1,0 +1,13 @@
+<div class="row" *ngIf="currentPokemon">
+  <div class="col-md-6">
+    <app-pokemon-profile [pokemon]="currentPokemon"></app-pokemon-profile>
+  </div>
+  <div class="col-md-6 pokemon-list">
+    <ul>
+      <a style="cursor: pointer" class="list-group-item" *ngFor="let aPokemon of pokemonFormes"
+        (click)="selectPokemon(aPokemon)"
+        [ngClass] = "(aPokemon == currentPokemon) ? 'active': 'pokemon'">
+        {{ aPokemon.forme }}</a>
+    </ul>
+  </div>
+</div>

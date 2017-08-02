@@ -24,5 +24,25 @@
   </div>
 </div>
 <br>
-<p>Type 1: {{ type1 }}</p>
-<p>Type 2: {{ type2 }}</p>
+<h5 align="center">Pokémon Results</h5>
+<br>
+<p>{{ visiblePokemon.length }} {{ visiblePokemon.length != 1 ? 'results' : 'result' }} found</p>
+<div class="row">
+  <div class="col-md-4">
+    <div class="pokemon-list" style="background-color:#1f1f1f">
+      <ul>
+        <a style="cursor: pointer" class="list-group-item"
+          *ngFor="let pokemon of visiblePokemon" (click)="choosePokemon(pokemon)"
+          [ngClass]="(selectedPokemon == pokemon) ? 'active' : 'pokemon'">
+          {{ pokemon.forme }}</a>
+      </ul>
+    </div>
+  </div>
+  <div *ngIf="!pokemonSelected" class="col-md-8">
+      <app-select-prompt></app-select-prompt>
+  </div>
+  <div *ngIf="pokemonSelected" class="col-md-8">
+      <app-pokemon-view></app-pokemon-view>
+      <!--<p>{{selectedPokemon.forme}}</p>-->
+  </div>
+</div>

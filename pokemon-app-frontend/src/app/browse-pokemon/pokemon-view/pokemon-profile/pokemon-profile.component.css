@@ -1,13 +1,3 @@
-.type-list {
-    height:200px;
-    overflow: scroll
-}
-
-.pokemon-list {
-    height:300px;
-    overflow: scroll
-}
-
 .Normal {
     background-color: #c4beae;
 }
@@ -78,17 +68,4 @@
 
 .Fairy {
     background-color: #ffccff;
-}
-
-.list-group-item {
-    color: white;
-}
-
-.pokemon {
-    background-color: #4f4f4f;
-    color: white;
-}
-
-h3 {
-    color: #cc0000;
 }

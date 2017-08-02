@@ -1,0 +1,63 @@
+<h6 align="center">{{ pokemon.forme }}</h6>
+<div class="row" *ngIf="pokemon.type2 == ''">
+  <div align="center" class="col-md-12" [ngClass]="pokemon.type1">
+    {{ pokemon.type1 }}
+  </div>
+</div>
+<div class="row" *ngIf="pokemon.type2 != ''">
+  <div align="center" class="col-md-6" [ngClass]="pokemon.type1">
+    {{ pokemon.type1 }}
+  </div>
+  <div align="center" class="col-md-6" [ngClass]="pokemon.type2">
+    {{ pokemon.type2 }}
+  </div>
+</div>
+<p align="center">Stats</p>
+<div class="row">
+  <div align="center" class="col-md-6">
+    HP
+  </div>
+  <div align="center" class="col-md-6">
+    {{ pokemon.hp }}
+  </div>
+</div>
+<div class="row">
+  <div align="center" class="col-md-6">
+    Attack
+  </div>
+  <div align="center" class="col-md-6">
+    {{ pokemon.attack }}
+  </div>
+</div>
+<div class="row">
+  <div align="center" class="col-md-6">
+    Defense
+  </div>
+  <div align="center" class="col-md-6">
+    {{ pokemon.defense }}
+  </div>
+</div>
+<div class="row">
+  <div align="center" class="col-md-6">
+     Special Attack
+  </div>
+  <div align="center" class="col-md-6">
+    {{ pokemon.spattack }}
+  </div>
+</div>
+<div class="row">
+  <div align="center" class="col-md-6">
+    Special Defense
+  </div>
+  <div align="center" class="col-md-6">
+    {{ pokemon.spdefense }}
+  </div>
+</div>
+<div class="row">
+  <div align="center" class="col-md-6">
+    Speed
+  </div>
+  <div align="center" class="col-md-6">
+    {{ pokemon.speed }}
+  </div>
+</div>
