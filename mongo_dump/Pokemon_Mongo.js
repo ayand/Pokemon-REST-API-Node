@@ -1,4 +1,4 @@
-var mongoose = require('../db/mongoose');
+var mongoose = require('./mongooseConnection');
 
 var pokemonSchema = mongoose.Schema({
     id: { type: Number, required: true },

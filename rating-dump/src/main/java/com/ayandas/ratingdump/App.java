@@ -42,9 +42,11 @@ public class App
         System.out.println("Connected to the DB");
 
         MongoCollection<Document> coll = database.getCollection("users");
+        MongoCollection<Document> pokemonColl = database.getCollection("pokemons");
         MongoCollection<Document> ratingColl = database.getCollection("ratings");
 
         ArrayList<Integer> ids = new ArrayList<>();
+        ArrayList<Integer> pokemonIds = new ArrayList<>();
         FindIterable<Document> users = coll.find();
         for (Document d: users) {
             //System.out.println("Document: " + d);
@@ -52,8 +54,15 @@ public class App
             //System.out.println(id);
             ids.add(id);
         }
+
+        FindIterable<Document> pokemons = pokemonColl.find();
+        for (Document d: pokemons) {
+            int id = d.getInteger("id");
+            pokemonIds.add(id);
+        }
+
         System.out.println("Size: " + ids.size());
-        for (int i = 1; i <= 1061; i++) {
+        for (Integer i: pokemonIds) {
             int numberOfUsers = (userNumberGenerator.nextInt(ids.size()) + 1);
             HashSet<Integer> selectedUsers = new HashSet<>();
             for (int j = 0; j < numberOfUsers; j++) {
