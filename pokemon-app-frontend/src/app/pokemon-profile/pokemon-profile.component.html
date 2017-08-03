@@ -1,4 +1,8 @@
-<h6 align="center">{{ pokemon.forme }}</h6>
+<div align="center">
+  <h6>{{ pokemon.forme }}</h6>
+  <img src="{{getPokemonImage()}}" height="150" alt="pokemon">
+</div>
+<br>
 <div class="row" *ngIf="pokemon.type2 == ''">
   <div align="center" class="col-md-12" [ngClass]="pokemon.type1">
     {{ pokemon.type1 }}

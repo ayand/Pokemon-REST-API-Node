@@ -34,4 +34,8 @@ export class PokemonProfileComponent implements OnInit {
   ngOnInit() {
   }
 
+  getPokemonImage() {
+      return "assets/images/pokemonImages/pokemon" + this.pokemon.id + ".png";
+  }
+
 }
