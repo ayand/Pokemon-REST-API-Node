@@ -69,3 +69,7 @@
 .Fairy {
     background-color: #ffccff;
 }
+
+.selected {
+    background-color: #00cc66;
+}

@@ -35,7 +35,7 @@
       <ul>
         <a style="cursor: pointer" class="list-group-item"
           *ngFor="let pokemon of visiblePokemon" (click)="choosePokemon(pokemon)"
-          [ngClass]="(selectedPokemon == pokemon) ? 'active' : 'pokemon'">
+          [ngClass]="(selectedPokemon == pokemon) ? 'selected' : 'pokemon'">
           {{ pokemon.forme }}</a>
       </ul>
     </div>

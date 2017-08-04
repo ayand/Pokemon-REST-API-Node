@@ -93,6 +93,10 @@ a:active {
     color: white;
 }
 
+.selected {
+    background-color: #00cc66;
+}
+
 h3 {
     color: #cc0000;
 }

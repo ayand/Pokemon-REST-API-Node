@@ -7,7 +7,7 @@
     <ul>
       <a style="cursor: pointer" class="list-group-item" *ngFor="let aPokemon of pokemonFormes"
         (click)="selectPokemon(aPokemon)"
-        [ngClass] = "(aPokemon == currentPokemon) ? 'active': 'pokemon'">
+        [ngClass] = "(aPokemon == currentPokemon) ? 'selected': 'pokemon'">
         {{ aPokemon.forme }}</a>
     </ul>
   </div>

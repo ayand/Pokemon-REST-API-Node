@@ -11,3 +11,7 @@
     height:300px;
     overflow: scroll
 }
+
+.selected {
+    background-color: #00cc66;
+}
