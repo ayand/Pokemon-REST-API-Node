@@ -10,7 +10,7 @@
     <div class="type-list">
       <ul>
         <a style="cursor: pointer" class="list-group-item" *ngFor="let type of firstList"
-          [ngClass]="(type1 != type) ? type : 'active'" (click)="selectType1(type)">
+          [ngClass]="(type1 != type) ? type : 'type-selected'" (click)="selectType1(type)">
           {{ type }}</a>
       </ul>
     </div>
@@ -20,7 +20,7 @@
     <div class="type-list">
       <ul>
         <a style="cursor: pointer" class="list-group-item" *ngFor="let type of secondList"
-          [ngClass]="(type2 != type) ? type : 'active'" (click)="selectType2(type)">{{ type }}</a>
+          [ngClass]="(type2 != type) ? type : 'type-selected'" (click)="selectType2(type)">{{ type }}</a>
       </ul>
     </div>
   </div>
