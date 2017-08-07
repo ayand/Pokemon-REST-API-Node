@@ -6,7 +6,6 @@ client = MongoClient()
 db = client.pokemon
 
 moveCollection = db.moves
-movesetCollection = db.movesets
 
 # Store information about all moves in the database
 moveFile = open("moves.json", "r")
