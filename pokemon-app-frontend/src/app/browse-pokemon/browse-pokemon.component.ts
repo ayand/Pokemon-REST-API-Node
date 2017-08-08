@@ -4,26 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { PokemonService } from '../pokemon.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Response } from '@angular/http';
-
-interface Pokemon {
-        id: number;
-        ndex: number;
-        forme: string;
-        species: string;
-        type1: string;
-        type2: string;
-        ability1: string;
-        ability2: string;
-        abilityH: string;
-        hp: number;
-        attack: number;
-        defense: number;
-        spattack: number;
-        spdefense: number;
-        speed: number;
-        eggGroup1: string;
-        eggGroup2: string;
-}
+import { Pokemon } from '../pokemon-interface';
 
 @Component({
   selector: 'app-browse-pokemon',

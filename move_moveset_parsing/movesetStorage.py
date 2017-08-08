@@ -61,6 +61,7 @@ for moveset in movesets:
                 record["move"] = moveName
                 record["method"] = learningMethod
                 record["method_full"] = method
+                record["move_index"] = moveIndex
                 movesetCollection.insert_one(record)
                 print("Inserted")
         print("Done with this moveset")

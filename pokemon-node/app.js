@@ -9,6 +9,7 @@ var pokemon = require('./routes/pokemon');
 var ratings = require('./routes/rating');
 var users = require('./routes/users');
 var recommendations = require('./routes/recommendation');
+var moves = require('./routes/move');
 
 var app = express();
 
@@ -44,6 +45,7 @@ app.use('/pokemon', pokemon);
 app.use('/ratings', ratings);
 app.use('/users', users);
 app.use('/recommendations', recommendations);
+app.use('/moves', moves);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

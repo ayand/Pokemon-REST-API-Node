@@ -2,26 +2,7 @@ import { EventEmitter, Injectable, OnInit } from '@angular/core';
 import { Headers, Http, Response } from '@angular/http';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
-
-interface Pokemon {
-        id: number;
-        ndex: number;
-        forme: string;
-        species: string;
-        type1: string;
-        type2: string;
-        ability1: string;
-        ability2: string;
-        abilityH: string;
-        hp: number;
-        attack: number;
-        defense: number;
-        spattack: number;
-        spdefense: number;
-        speed: number;
-        eggGroup1: string;
-        eggGroup2: string;
-}
+import { Pokemon } from './pokemon-interface';
 
 @Injectable()
 export class PokemonService implements OnInit {
