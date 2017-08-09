@@ -10,6 +10,7 @@ var ratings = require('./routes/rating');
 var users = require('./routes/users');
 var recommendations = require('./routes/recommendation');
 var moves = require('./routes/move');
+var search = require('./routes/search');
 
 var app = express();
 
@@ -46,6 +47,7 @@ app.use('/ratings', ratings);
 app.use('/users', users);
 app.use('/recommendations', recommendations);
 app.use('/moves', moves);
+app.use('/search', search);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

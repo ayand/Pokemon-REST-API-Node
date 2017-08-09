@@ -7,3 +7,5 @@ derby*
 metastore*
 Pokemon-Recommendation
 bestModel
+searching.js
+checkIndices.js

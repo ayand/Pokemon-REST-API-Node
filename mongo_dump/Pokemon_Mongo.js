@@ -3,7 +3,6 @@ var mongoose = require('./mongooseConnection');
 var pokemonSchema = mongoose.Schema({
     id: { type: Number, required: true },
     ndex: { type: Number,required: true },
-    forme: { type: String, required: true },
     forme: {
         type: String, required: true
     },

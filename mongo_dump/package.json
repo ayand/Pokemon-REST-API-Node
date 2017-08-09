@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "elasticsearch": "^13.2.0",
     "file-system": "^2.2.2",
     "mongodb": "^2.2.30",
     "mongoose": "^4.10.8",
