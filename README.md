@@ -1,4 +1,4 @@
-# Pokémon REST/Spark based Application
+# Pokémon MEAN Stack/Spark/ElasticSearch based Application
 
 ### Source of data that is stored in the database for this operation:
 https://www.kaggle.com/mylesoneill/pokemon-sun-and-moon-gen-7-stats
@@ -14,6 +14,11 @@ This is an Express.js application written in Node.js which interacts with a Mong
 * Registering users
 * Allowing a user to post ratings for multiple Pokémon
 * Returning the top 50 recommended Pokémon for a user along with the suggested ratings the user might give them.
+* Return all moves in the games
+* Return one particular move
+* Return all the moves a Pokémon can learn
+* Return all the Pokémon who can learn a move
+* Search for Pokémon with a certain species, forme, type, ability, or egg group with ElasticSearch
 
 ## rating-dump
 This is a Maven Java application which uses two source files to read all user ratings of Pokémon from the database and put them in a text file
