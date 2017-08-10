@@ -10,7 +10,7 @@ module.exports.pokemonSearch = function(req, res, next) {
             query: searchTerm,
             fields: ['species', 'forme', 'type1', 'type2', 'ability1',
                 'ability2', 'abilityH', 'eggGroup1', 'eggGroup2'],
-            fuzziness: 2
+            fuzziness: 0
         }
       }
     };
@@ -24,6 +24,13 @@ module.exports.pokemonSearch = function(req, res, next) {
         });
         console.log("Final answer: ");
         console.log(finalAnswer);
+        finalAnswer.sort(function(a, b) {
+            var ndexComparison = a.ndex - b.ndex;
+            if (ndexComparison == 0) {
+                return a.id - b.id;
+            }
+            return ndexComparison;
+        })
         return res.status(200).send(finalAnswer);
     }).catch(function(error) {
         console.log(error);

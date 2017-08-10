@@ -1,30 +1,14 @@
 <br>
 <h3 align="center">PokéBrowse</h3>
-<br>
-<div class="row">
-  <div class="col-md-4">
-    <p>Select the types of the Pokémon you wish to look at. Once you select a Pokémon, you can check out its stats as well as any other forms it may have.</p>
-  </div>
-  <div class="col-md-4">
-    <h5 align="center">Type 1</h5>
-    <div class="type-list">
-      <ul>
-        <a style="cursor: pointer" class="list-group-item" *ngFor="let type of firstList"
-          [ngClass]="(type1 != type) ? type : 'type-selected'" (click)="selectType1(type)">
-          {{ type }}</a>
-      </ul>
-    </div>
-  </div>
-  <div *ngIf="type1 != null" class="col-md-4">
-    <h5 align="center">Type 2</h5>
-    <div class="type-list">
-      <ul>
-        <a style="cursor: pointer" class="list-group-item" *ngFor="let type of secondList"
-          [ngClass]="(type2 != type) ? type : 'type-selected'" (click)="selectType2(type)">{{ type }}</a>
-      </ul>
-    </div>
-  </div>
+<div align="center">
+  <label style="cursor:pointer" class="btn btn-danger" (click)="showFilter()">PokéFilter</label>
+  <label style="cursor:pointer" class="btn btn-danger" (click)="showSearch()">PokéSearch</label>
 </div>
+<br>
+<br>
+<app-filter-browse (typeClicked)="backToBrowse()" *ngIf="!seeSearch"></app-filter-browse>
+<app-pokemon-search-browse (searchEntered)="backToBrowse()" *ngIf="seeSearch"></app-pokemon-search-browse>
+<!--<app-pokemon-search-browse (searchEntered)="backToBrowse()"></app-pokemon-search-browse>-->
 <br>
 <h5 align="center">Pokémon Results</h5>
 <br>
@@ -40,12 +24,6 @@
       </ul>
     </div>
   </div>
-  <!--<div *ngIf="!pokemonSelected" class="col-md-8">
-      <app-select-prompt></app-select-prompt>
-  </div>
-  <div *ngIf="pokemonSelected" class="col-md-8">
-      <app-pokemon-view></app-pokemon-view>
-  </div>-->
   <div class="col-md-8">
     <router-outlet></router-outlet>
   </div>

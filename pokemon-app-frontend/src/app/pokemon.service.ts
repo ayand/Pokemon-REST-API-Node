@@ -1,31 +1,30 @@
-import { EventEmitter, Injectable, OnInit } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Headers, Http, Response } from '@angular/http';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
 import { Pokemon } from './pokemon-interface';
 
 @Injectable()
-export class PokemonService implements OnInit {
+export class PokemonService {
     private pokemon: Pokemon[] = [];
     pokemonEmitter = new EventEmitter<Pokemon[]>();
-    singlePokemonEmitter = new EventEmitter<Pokemon>();
 
     constructor(private http: Http) {}
 
-    setAllPokemon(allPokemon: Pokemon[]) {
-        this.pokemon = allPokemon;
+    setPokemon(allPokemon: Pokemon[]) {
         this.pokemonEmitter.emit(allPokemon);
     }
-
-    ngOnInit() {
-
-    }
-
-
 
     showPokemonOfOneType(type: string) {
         const relevantPokemon = this.pokemon.filter((p) => {
             return p.type1 == type || p.type2 == type;
+        })
+        relevantPokemon.sort((a, b) => {
+            const ndexComparison = a.ndex - b.ndex;
+            if (ndexComparison == 0) {
+                return a.id - b.id;
+            }
+            return ndexComparison;
         })
         this.pokemonEmitter.emit(relevantPokemon);
     }
@@ -33,6 +32,13 @@ export class PokemonService implements OnInit {
     showPokemonOfTwoTypes(type1: string, type2: string) {
         const relevantPokemon = this.pokemon.filter((p) => {
             return (p.type1 == type1 && p.type2 == type2) || (p.type1 == type2 && p.type2 == type1)
+        })
+        relevantPokemon.sort((a, b) => {
+            const ndexComparison = a.ndex - b.ndex;
+            if (ndexComparison == 0) {
+                return a.id - b.id;
+            }
+            return ndexComparison;
         })
         this.pokemonEmitter.emit(relevantPokemon);
     }
@@ -45,6 +51,13 @@ export class PokemonService implements OnInit {
         const relevantPokemon = this.pokemon.filter((p) => {
             return p.ndex == ndex;
         })
+        relevantPokemon.sort((a, b) => {
+            const ndexComparison = a.ndex - b.ndex;
+            if (ndexComparison == 0) {
+                return a.id - b.id;
+            }
+            return ndexComparison;
+        })
         return relevantPokemon;
     }
 
@@ -53,10 +66,6 @@ export class PokemonService implements OnInit {
             return p.id == id;
         })
         return relevantPokemon[0];
-    }
-
-    emitPokemon(pokemon: Pokemon) {
-        this.singlePokemonEmitter.emit(pokemon);
     }
 
     getAllPokemon() {
@@ -71,6 +80,22 @@ export class PokemonService implements OnInit {
         .catch((error: Response) => {
             return Observable.throw('Something went wrong');
         })
+    }
+
+    searchPokemon(term: string) {
+        const parsedTerm = term.replace(" " , "+");
+        const queryString = 'http://localhost:3000/search/pokemon?term=' + parsedTerm;
+        return this.http.get(queryString).map(
+            (response: Response) => {
+                const data = response.json() as Pokemon[];
+                this.pokemonEmitter.emit(data);
+                return data;
+            }
+        )
+    }
+
+    emitAllPokemon() {
+        this.pokemonEmitter.emit(this.pokemon);
     }
 
 }

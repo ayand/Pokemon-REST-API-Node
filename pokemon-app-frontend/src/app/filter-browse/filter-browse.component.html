@@ -1,0 +1,27 @@
+<h4 align="center">PokéFilter</h4>
+<br>
+<br>
+<div class="row">
+  <div class="col-md-4">
+    <p>Select the types of the Pokémon you wish to look at. Once you select a Pokémon, you can check out its stats as well as any other forms it may have.</p>
+  </div>
+  <div class="col-md-4">
+    <h5 align="center">Type 1</h5>
+    <div class="type-list">
+      <ul>
+        <a style="cursor: pointer" class="list-group-item" *ngFor="let type of firstList"
+          [ngClass]="(type1 != type) ? type : 'type-selected'" (click)="selectType1(type)">
+          {{ type }}</a>
+      </ul>
+    </div>
+  </div>
+  <div *ngIf="type1 != null" class="col-md-4">
+    <h5 align="center">Type 2</h5>
+    <div class="type-list">
+      <ul>
+        <a style="cursor: pointer" class="list-group-item" *ngFor="let type of secondList"
+          [ngClass]="(type2 != type) ? type : 'type-selected'" (click)="selectType2(type)">{{ type }}</a>
+      </ul>
+    </div>
+  </div>
+</div>

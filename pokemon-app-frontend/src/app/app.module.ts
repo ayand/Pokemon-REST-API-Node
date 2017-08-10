@@ -15,6 +15,8 @@ import { PokemonService } from './pokemon.service';
 import { SelectPromptComponent } from './browse-pokemon/select-prompt/select-prompt.component';
 import { PokemonViewComponent } from './browse-pokemon/pokemon-view/pokemon-view.component';
 import { PokemonProfileComponent } from './pokemon-profile/pokemon-profile.component';
+import { FilterBrowseComponent } from './filter-browse/filter-browse.component';
+import { PokemonSearchBrowseComponent } from './pokemon-search-browse/pokemon-search-browse.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { PokemonProfileComponent } from './pokemon-profile/pokemon-profile.compo
     BrowsePokemonComponent,
     SelectPromptComponent,
     PokemonViewComponent,
-    PokemonProfileComponent
+    PokemonProfileComponent,
+    FilterBrowseComponent,
+    PokemonSearchBrowseComponent
   ],
   imports: [
     BrowserModule,
