@@ -40,7 +40,7 @@ This application contains images from various sources. They are as follows:
     * http://cdn2.alphr.com/sites/alphr/files/2016/07/how_to_get_pikachu_starter_pokemon.jpg
     * http://emertainmentmonthly.com/wp-content/uploads/sites/45/2016/11/pokemon4.jpg
 * Pokémon images
-    * https://bulbapedia.bulbagarden.net/wiki/Main_Page
+    * https://bulbapedia.bulbagarden.net/
 
 ## mongo_dump
 This directory contains various files for dumping various data into MongoDB and ElasticSearch.
