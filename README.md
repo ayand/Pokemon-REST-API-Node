@@ -19,6 +19,7 @@ This is an Express.js application written in Node.js which interacts with a Mong
 * Return all the moves a Pokémon can learn
 * Return all the Pokémon who can learn a move
 * Search for Pokémon with a certain species, forme, type, ability, or egg group with ElasticSearch
+* Search for moves with a particular name, category, or type with ElasticSearch
 
 ## rating-dump
 This is a Maven Java application which uses two source files to read all user ratings of Pokémon from the database and put them in a text file
@@ -38,3 +39,11 @@ This application contains images from various sources. They are as follows:
     * https://gameperiod.com/wp-content/uploads/2017/04/2016-03-08-08-24-17-ash_and_pokemon_all_by_pklucario-d34lncz.png
     * http://cdn2.alphr.com/sites/alphr/files/2016/07/how_to_get_pikachu_starter_pokemon.jpg
     * http://emertainmentmonthly.com/wp-content/uploads/sites/45/2016/11/pokemon4.jpg
+* Pokémon images
+    * https://bulbapedia.bulbagarden.net/wiki/Main_Page
+
+## mongo_dump
+This directory contains various files for dumping various data into MongoDB and ElasticSearch.
+
+## move_moveset_parsing
+This directory contains files for dumping information about moves and Pokémon mindsets onto the MongoDB database.

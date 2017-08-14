@@ -15,7 +15,7 @@ module.exports.pokemonSearch = function(req, res, next) {
       }
     };
     console.log('Search term: ' + searchTerm);
-    elasticsearch.search({ index: 'pokemon', body: body }).then(pokemon => {
+    elasticsearch.search({ index: 'pokemon', body: body }).then(function(pokemon) {
         var finalAnswer = pokemon.hits.hits.filter(function(d) {
             return d._score > 2;
         }).map(function(d) {
