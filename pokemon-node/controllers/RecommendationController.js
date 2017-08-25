@@ -2,7 +2,7 @@ var Recommendation = require('../models/Recommendation');
 var Pokemon = require('../models/Pokemon');
 
 module.exports.getRecommendations = function(req, res, next) {
-    Recommendation.find({ "userId": req.params.userId }, function(err, recos) {
+     Recommendation.find({ "userId": req.body.userId }, function(err, recos) {
         if (err) {
             return res.status(500).send({ 'error': 'Could not retrieve your recommendations' })
         }

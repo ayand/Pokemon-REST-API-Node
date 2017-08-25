@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing-module';
 import { HttpModule } from '@angular/http';
@@ -12,11 +12,15 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { BrowsePokemonComponent } from './browse-pokemon/browse-pokemon.component';
 
 import { PokemonService } from './pokemon.service';
+import { AuthService } from './auth.service';
 import { SelectPromptComponent } from './browse-pokemon/select-prompt/select-prompt.component';
 import { PokemonViewComponent } from './browse-pokemon/pokemon-view/pokemon-view.component';
 import { PokemonProfileComponent } from './pokemon-profile/pokemon-profile.component';
 import { FilterBrowseComponent } from './filter-browse/filter-browse.component';
 import { PokemonSearchBrowseComponent } from './pokemon-search-browse/pokemon-search-browse.component';
+import { SigninComponent } from './signin/signin.component';
+import { SignupComponent } from './signup/signup.component';
+import { UserHomeComponent } from './user-home/user-home.component';
 
 @NgModule({
   declarations: [
@@ -28,17 +32,21 @@ import { PokemonSearchBrowseComponent } from './pokemon-search-browse/pokemon-se
     PokemonViewComponent,
     PokemonProfileComponent,
     FilterBrowseComponent,
-    PokemonSearchBrowseComponent
+    PokemonSearchBrowseComponent,
+    SigninComponent,
+    SignupComponent,
+    UserHomeComponent
   ],
   imports: [
     BrowserModule,
     NgbModule.forRoot(),
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
     HttpModule
   ],
-  providers: [PokemonService],
+  providers: [PokemonService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
