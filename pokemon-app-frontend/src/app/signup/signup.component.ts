@@ -10,20 +10,13 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-  signupForm: FormGroup;
 
   constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-      this.signupForm = new FormGroup({
-          'username': new FormControl(null, Validators.required),
-          'password': new FormControl(null, Validators.required)
-      });
   }
 
-  onSubmit() {
-      const data = this.signupForm.value as UserInfo;
-      console.log(this.signupForm);
+  signUp(data: UserInfo) {
       console.log(data);
       this.authService.signUp(data).subscribe(
           (response) => {

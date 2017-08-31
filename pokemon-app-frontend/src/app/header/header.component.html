@@ -9,5 +9,16 @@
           <a class="nav-link" routerLink="/browse" routerLinkActive="active">PokéBrowse<span class="sr-only">(current)</span></a>
         </li>
       </ul>
+      <ul class="navbar-nav navbar-right">
+          <li class="nav-item active">
+            <a class="nav-link" routerLink="/signup" *ngIf="!authService.isAuthenticated()">Register</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" routerLink="/signin" *ngIf="!authService.isAuthenticated()">Login</a>
+          </li>
+          <li class="nav-item active">
+            <a style="cursor:pointer" class="nav-link" (click)="signOut()" *ngIf="authService.isAuthenticated()">Log Out</a>
+          </li>
+      </ul>
     </div>
 </nav>

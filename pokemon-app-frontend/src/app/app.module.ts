@@ -21,6 +21,7 @@ import { PokemonSearchBrowseComponent } from './pokemon-search-browse/pokemon-se
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 import { UserHomeComponent } from './user-home/user-home.component';
+import { AuthFormComponent } from './auth-form/auth-form.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { UserHomeComponent } from './user-home/user-home.component';
     PokemonSearchBrowseComponent,
     SigninComponent,
     SignupComponent,
-    UserHomeComponent
+    UserHomeComponent,
+    AuthFormComponent
   ],
   imports: [
     BrowserModule,
