@@ -43,12 +43,13 @@ module.exports.updateRating = function(req, res, next) {
         if (error) {
             return res.status(500).send({ 'error': 'Could not start the process of updating the user\'s rating' });
         }
-        if (!existingRating) {
-            var newRating = {
+        if (!existingRating || existingRating == null) {
+            console.log("Could not find rating");
+            var newRating = new Rating({
                 userId: userID,
                 pokemonId: pokemonID,
                 rating: theRating
-            }
+            })
             newRating.save(function(err, rating) {
                 if (err) {
                     return res.status(500).send({ 'error': 'Could not put in the user\'s new rating' });
@@ -58,16 +59,20 @@ module.exports.updateRating = function(req, res, next) {
                 }
                 return res.status(200).send(rating);
             })
+        } else {
+          console.log("Existing rating: ");
+          console.log(existingRating);
+          existingRating.rating = theRating;
+          existingRating.save(function(err, rating) {
+              if (err) {
+                  return res.status(500).send({ 'error': 'Could not update the user\'s rating' });
+              }
+              if (!rating) {
+                  return res.status(400).send({ 'error': 'Rating was not updated' })
+              }
+              return res.status(200).send(rating);
+          })
         }
-        existingRating.rating = theRating;
-        existingRating.save(function(err, rating) {
-            if (err) {
-                return res.status(500).send({ 'error': 'Could not update the user\'s rating' });
-            }
-            if (!rating) {
-                return res.status(400).send({ 'error': 'Rating was not updated' })
-            }
-            return res.status(200).send(rating);
-        })
+
     })
 }

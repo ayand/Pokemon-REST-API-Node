@@ -16,6 +16,15 @@
     {{ pokemon.type2 }}
   </div>
 </div>
+<br>
+<div align="center">
+    <ngb-rating [(rate)]="currentRating" max="5">
+      <ng-template let-fill="fill">
+        <span class="star" [class.filled]="fill === 100">&#9733;</span>
+      </ng-template>
+    </ngb-rating>
+</div>
+<br>
 <p align="center">Stats</p>
 <div class="row">
   <div align="center" class="col-md-6">

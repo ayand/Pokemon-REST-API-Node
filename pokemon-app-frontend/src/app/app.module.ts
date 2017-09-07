@@ -10,9 +10,6 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { BrowsePokemonComponent } from './browse-pokemon/browse-pokemon.component';
-
-import { PokemonService } from './pokemon.service';
-import { AuthService } from './auth.service';
 import { SelectPromptComponent } from './browse-pokemon/select-prompt/select-prompt.component';
 import { PokemonViewComponent } from './browse-pokemon/pokemon-view/pokemon-view.component';
 import { PokemonProfileComponent } from './pokemon-profile/pokemon-profile.component';
@@ -22,6 +19,11 @@ import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 import { UserHomeComponent } from './user-home/user-home.component';
 import { AuthFormComponent } from './auth-form/auth-form.component';
+
+import { PokemonService } from './pokemon.service';
+import { AuthService } from './auth.service';
+import { RatingService } from './rating.service';
+
 
 @NgModule({
   declarations: [
@@ -48,7 +50,7 @@ import { AuthFormComponent } from './auth-form/auth-form.component';
     HttpClientModule,
     HttpModule
   ],
-  providers: [PokemonService, AuthService],
+  providers: [PokemonService, AuthService, RatingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

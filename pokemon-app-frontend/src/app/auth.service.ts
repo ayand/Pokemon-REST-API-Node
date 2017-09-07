@@ -1,4 +1,3 @@
-import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { Headers, Http, Response } from '@angular/http';
 import 'rxjs/Rx';
@@ -10,7 +9,7 @@ export class AuthService {
     private token: string;
     private id: number;
 
-    constructor(private router: Router, private http: Http) {}
+    constructor(private http: Http) {}
 
     signUp(user: UserInfo) {
         console.log('Trying to sign up');
@@ -57,5 +56,9 @@ export class AuthService {
 
     getToken() {
         return this.token;
+    }
+
+    getId() {
+        return this.id;
     }
 }
